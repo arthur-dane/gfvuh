@@ -34,6 +34,9 @@ async def start(client, message):
                     InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        m=await message.reply_sticker("CAACAgUAAxkBAAEGtDtjjwMDy2VxBDPUdthF75PKjolepgACNAYAAjDgeFTjDnvThZ_q6ysE")
+        await asyncio.sleep(1)
+        await m.delete()
         await message.reply(script.START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), reply_markup=reply_markup)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
         if not await db.get_chat(message.chat.id):
@@ -58,6 +61,9 @@ async def start(client, message):
                     InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        n=await message.reply_sticker("CAACAgUAAxkBAAEGtDtjjwMDy2VxBDPUdthF75PKjolepgACNAYAAjDgeFTjDnvThZ_q6ysE")
+        await asyncio.sleep(1)
+        await n.delete()
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
@@ -107,6 +113,9 @@ async def start(client, message):
                     InlineKeyboardButton('✇ Jᴏɪɴ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇', url=CHNL_LNK)
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        o=await message.reply_sticker("CAACAgUAAxkBAAEGtDtjjwMDy2VxBDPUdthF75PKjolepgACNAYAAjDgeFTjDnvThZ_q6ysE")
+        await asyncio.sleep(1)
+        await o.delete()
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
