@@ -39,7 +39,6 @@ async def save_file(media):
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
     file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
-    file_name = re.sub(r"(@I_M_D_B|\@C_V|\@CC_ALL|\@cinema_company|\@FBM_New|\filmzz_zzone|\@ALL_PIXO|\@CC_New|\@Cinema_Villa|\@BC_LiNKS|\@CV_group1|\@Mm_Linkz|\@Kande76|\@Tamilrockers_TG|\@desimovies_Telegram|\@FILMY_MEN|\@MM_HEVC|\@Mallu_Rockers|\@mobile_mm|\@Tamil_LinkzZ|\@MM_New|\@SY_MS|\@PM_Linkz|\@FBM_ALL|\@Bm_Links|\@MALLU_MOVIES|\@FC_HEVC|\@BC_LINKS|\@FBM_HW|\@Hotstar_Plus_Official|\@F_KHJ|\CINEMA_BEACON|\@CINEMA_BEACON|\@Starzone_collections|\@MB_ALL|\@FBM_x265)|([@#][A-Za-z0-9]+)", "", str(media.file_name))
     try:
         file = Media(
             file_id=file_id,
