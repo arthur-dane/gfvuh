@@ -38,7 +38,7 @@ async def save_file(media):
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
-    file_name = re.sub(r"(_|\-|\.|\+|\@I_M_D_B|\@C_V|\@CC_ALL|\@cinema_company|\@FBM_HW|\@Cinema_Villa)|([@#][A-Za-z0-9]+)", " ", str(media.file_name))
+    file_name = re.sub(r"(_|\-|\.|\+", " ", str(media.file_name))
     try:
         file = Media(
             file_id=file_id,
