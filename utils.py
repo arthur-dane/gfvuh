@@ -443,7 +443,7 @@ async def tutorial_link(chat_id, link):
         TUTORIAL = settings['tutorial_video']
     else:
         TUTORIAL = TUTORIAL_VIDEO
-https = link.split(":")[0]
+    https = link.split(":")[0]
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
