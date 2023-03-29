@@ -1,6 +1,6 @@
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
-from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, MAX_LIST_ELM, SHORTLINK_URL, SHORTLINK_API, LOG_CHANNEL
+from info import AUTH_CHANNEL, LONG_IMDB_DESCRIPTION, TUTORIAL_VIDEO, MAX_LIST_ELM, SHORTLINK_URL, SHORTLINK_API, LOG_CHANNEL
 from imdb import Cinemagoer 
 import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
@@ -436,6 +436,18 @@ def humanbytes(size):
         size /= power
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
+
+async def tutorial_link(chat_id, link):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'tutorial_video' in settings.keys():
+        TUTORIAL = settings['tutorial_video']
+    else:
+        TUTORIAL = TUTORIAL_VIDEO
+https = link.split(":")[0]
+    if "http" == https:
+        https = "https"
+        link = link.replace("http", https)
+          return TUTORIAL
 
 async def get_shortlink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
