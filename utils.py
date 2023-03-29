@@ -447,7 +447,7 @@ async def tutorial_link(chat_id, link):
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
-          return TUTORIAL
+    return TUTORIAL
 
 async def get_shortlink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
