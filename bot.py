@@ -35,17 +35,17 @@ class Bot(Client):
         )
 
     def message_handler(update, context):
-    message_text = update.message.text
-    # ... existing code ...
-    if found:
-        tutorial_link = 'https://t.me/movies_halt_update/2'
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f'Here is a tutorial: {tutorial_link}', parse_mode=ParseMode.HTML)
+        message_text = update.message.text
+        # ... existing code ...
+        if found:
+            tutorial_link = 'https://t.me/movies_halt_update/2'
+            context.bot.send_message(chat_id=update.effective_chat.id, text=f'Here is a tutorial: {tutorial_link}', parse_mode=ParseMode.HTML)
 
     def setup(dp):
     # ... existing code ...
 
-    add_tutorial_link_handler = CommandHandler('add_tutorial_link', add_tutorial_link)
-    dp.add_handler(add_tutorial_link_handler)
+        add_tutorial_link_handler = CommandHandler('add_tutorial_link', add_tutorial_link)
+        dp.add_handler(add_tutorial_link_handler)
 
     async def start(self):
         b_users, b_chats = await db.get_banned()
