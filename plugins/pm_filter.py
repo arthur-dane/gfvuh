@@ -1409,7 +1409,7 @@ async def auto_filter(client, msg, spoll=False):
             )
 
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await tutorial_link(query.message.chat.id, TUTORIAL))
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await add_tutorial_link(query.message.chat.id, tutorial_link))
     ])
 
     if offset != "":
