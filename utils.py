@@ -437,12 +437,6 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
 
-async def add_tutorial_link(update, context):
-    chat_id = update.effective_chat.id
-    tutorial_link = context.args[0]
-    # You can save the tutorial link to a database or a file here
-    context.bot.send_message(chat_id=chat_id, text=f'Tutorial link added: {tutorial_link}')
-
 async def get_shortlink(chat_id, link):
     settings = await get_settings(chat_id) #fetching settings for group
     if 'shortlink' in settings.keys():
