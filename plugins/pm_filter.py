@@ -269,7 +269,7 @@ async def next_page(bot, query):
                     ],
                 )
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await tutorial_link(query.message.chat.id, TUTORIAL))
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await add_tutorial_link(query.message.chat.id, tutorial_link))
     ])
     try:
         await query.edit_message_reply_markup(
