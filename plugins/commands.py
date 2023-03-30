@@ -837,7 +837,7 @@ async def shortlink(bot, message):
     await reply.edit_text(f"<b>Successfully added shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
 
 @Client.on_message(filters.command("add_tutorial_link") & filters.user(ADMINS))
-async def shortlink(bot, message):
+async def add_tutorial_link(bot, message):
     chat_type = message.chat.type
     if chat_type == enums.ChatType.PRIVATE:
         return await message.reply_text(f"<b>Hey {message.from_user.mention}, This command only works on groups !</b>")
@@ -856,7 +856,7 @@ async def shortlink(bot, message):
     try:
         command, download_tutorial = data.split(" ")
     except:
-        return await message.reply_text("<b>Command Incomplete :(\n\nGive me a tutorial video link along with the command !\n\nFormat: <code>/tutorial_video https://t.me/movies_halt_update/2</code></b>")
+        return await message.reply_text("<b>Command Incomplete :(\n\nGive me a tutorial video link along with the command !\n\nFormat: <code>/add_tutorial_link https://t.me/movies_halt_update/2</code></b>")
     reply = await message.reply_text("<b>Please Wait...</b>")
     await save_group_settings(grpid, 'add_tutorial_link', download_tutorial)
     await reply.edit_text(f"<b>Successfully added Tutorial Video for {title}.\n\nCurrent Tutorial Video Link: <code>{download_tutorial}</code></b>")
