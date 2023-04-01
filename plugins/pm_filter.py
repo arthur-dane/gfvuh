@@ -268,11 +268,13 @@ async def next_page(bot, query):
                         InlineKeyboardButton("𝐍𝐄𝐗𝐓 ➪", callback_data=f"next_{req}_{key}_{n_offset}")
                     ],
                 )
-        if settings["tutorial"]:
-            try:            
-                tutorialtext = settings["tutorialtext"]
+    TUTORIALS = settings['tutorial']
+    if tutorial:
+        cas = TUTORIALS
+    else
+        cas = f"https://t.me/movies_halt_update/2"
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=tutorialtext)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
     ])
     try:
         await query.edit_message_reply_markup(
@@ -1442,7 +1444,7 @@ async def auto_filter(client, msg, spoll=False):
             )
 
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=tutorialtext)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
     ])
 
     if offset != "":
