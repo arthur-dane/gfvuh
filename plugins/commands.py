@@ -846,27 +846,45 @@ async def shortlink(bot, message):
     await save_group_settings(grpid, 'is_shortlink', True)
     await reply.edit_text(f"<b>Successfully added shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
 
-@Client.on_message(filters.command("add_tutorial") & filters.user(ADMINS))
-async def add_tutorial(bot, message):
+@Client.on_message(filters.command('add_tutorial'))
+async def save_tutorial(client, message):
+    sts = await message.reply("Checking Tutorial")
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
+
     if chat_type == enums.ChatType.PRIVATE:
-        return await message.reply_text(f"<b>Hey {message.from_user.mention}, This command only works on groups !</b>")
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        grpid = message.chat.id
+        grp_id = message.chat.id
         title = message.chat.title
+
     else:
         return
-    data = message.text
-    userid = message.from_user.id
-    user = await bot.get_chat_member(grpid, userid)
-    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
-        return await message.reply_text("<b>You don't have access to use this command or You Are Anonymous Admin in Your Group !</b>")
-    else:
-        pass
-    try:
-        command, tutorial = data.split(" ")
-    except:
-        return await message.reply_text("<b>Command Incomplete :(\n\nGive me Your Tutorial Link along with the command !\n\nFormat: <code>/add_tutorial https://t.me/movies_halt_update/2</code></b>")
-    reply = await message.reply_text("<b>Please Wait...</b>")
-    await save_group_settings(grpid, 'tutorialtext', tutorial)
-    await reply.edit_text(f"<b>Successfully added Tutorial Link for {title}.\n\nCurrent Tutorial Link: <code>{tutorial}</code></b>")
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    if len(message.command) < 2:
+        return await sts.edit("You Haven't Added Your Tutorial Link!!")
+    tutorial = message.text.split(" ", 1)[1]
+    await save_group_settings(grp_id, 'tutorial', tutorial)
+    await sts.edit(f"Successfully changed Tutorial Link for {title} to\n\n{tutorial}")
