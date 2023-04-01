@@ -883,5 +883,5 @@ async def add_tutorial(client, message):
         return await sts.edit("<b>Command Incomplete :(\n\nGive me a tutorial link along with the command !\n\nFormat: <code>/add_tutorial https://t.me/movies_halt_update/2</code></b>")
 
     tutorial = message.text.split(" ", 1)[1]
-    await save_group_settings(grp_id, 'tutoriallink', tutorial)
+    await save_group_settings(grp_id, 'tutorialtext', tutorial)
     await sts.edit(f"<b>Successfully added Tutorial Link for {title}.\n\nCurrent Tutorial Link: <code>{tutorial}</code></b>")
