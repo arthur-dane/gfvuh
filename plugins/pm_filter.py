@@ -272,8 +272,10 @@ async def next_page(bot, query):
         try:
             try:            
                 tutorialtext = settings["tutorialtext"]
+        else
+                tutorialtext = TUTORIAL
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await add_tutorial_link(grp_id, download_tutorial))
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=tutorialtext)
     ])
     try:
         await query.edit_message_reply_markup(
@@ -700,6 +702,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
+                [
+                InlineKeyboardButton(
+                    'Add Tutorial',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+            ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_text(
@@ -787,6 +799,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
+                [
+                InlineKeyboardButton(
+                    'Add Tutorial',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+            ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await client.send_message(
@@ -1287,6 +1309,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
+                [
+                InlineKeyboardButton(
+                    'Add Tutorial',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+                InlineKeyboardButton(
+                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                ),
+            ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
@@ -1413,7 +1445,7 @@ async def auto_filter(client, msg, spoll=False):
             )
 
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=await add_tutorial_link(grp_id, download_tutorial))
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=tutorialtext)
     ])
 
     if offset != "":
