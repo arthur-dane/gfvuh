@@ -271,7 +271,7 @@ async def next_page(bot, query):
     TUTORIALS = settings['tutorial']
     if tutorial:
         cas = TUTORIALS
-    else
+    else:
         cas = f"https://t.me/movies_halt_update/2"
     btn.insert(0, [
         InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
