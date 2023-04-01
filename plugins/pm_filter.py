@@ -271,8 +271,6 @@ async def next_page(bot, query):
     if settings["tutorial"]:
         try:            
             tutorialtext = settings["tutorialtext"]
-    else:
-            tutorialtext = TUTORIAL
     btn.insert(0, [
         InlineKeyboardButton("⚡ How to Open Link ⚡", url=tutorialtext)
     ])
