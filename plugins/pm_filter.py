@@ -274,7 +274,7 @@ async def next_page(bot, query):
     else:
         cas = f"https://t.me/movies_halt_update/2"
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
     ])
     try:
         await query.edit_message_reply_markup(
@@ -1444,7 +1444,7 @@ async def auto_filter(client, msg, spoll=False):
             )
 
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
     ])
 
     if offset != "":
