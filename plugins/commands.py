@@ -557,16 +557,6 @@ async def settings(client, message):
             ],
             [
                 InlineKeyboardButton(
-                    'Wᴇʟᴄᴏᴍᴇ Msɢ',
-                    callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    '✔ Oɴ' if settings["welcome"] else '✘ Oғғ',
-                    callback_data=f'setgs#welcome#{settings["welcome"]}#{grp_id}',
-                ),
-            ],
-            [
-                InlineKeyboardButton(
                     'Aᴜᴛᴏ-Dᴇʟᴇᴛᴇ',
                     callback_data=f'setgs#auto_delete#{settings["auto_delete"]}#{grp_id}',
                 ),
