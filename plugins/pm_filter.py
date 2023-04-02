@@ -268,13 +268,12 @@ async def next_page(bot, query):
                         InlineKeyboardButton("𝐍𝐄𝐗𝐓 ➪", callback_data=f"next_{req}_{key}_{n_offset}")
                     ],
                 )
-    TUTORIALS = settings['tutorial']
-    if tutorial:
-        cas = TUTORIALS
+    if 'tutorial' in settings.keys():
+        TUTORIALS = settings['tutorial']
     else:
-        cas = f"https://t.me/movies_halt_update/2"
+        TUTORIALS = f"https://t.me/movies_halt_update/2"
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
     ])
     try:
         await query.edit_message_reply_markup(
@@ -702,14 +701,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
                 [
-                InlineKeyboardButton(
-                    'Add Tutorial',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
+                    InlineKeyboardButton('Add Tutorial',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
             ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -799,14 +794,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
                 [
-                InlineKeyboardButton(
-                    'Add Tutorial',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
+                    InlineKeyboardButton('Add Tutorial',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
             ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -1309,14 +1300,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
                 ]
                 [
-                InlineKeyboardButton(
-                    'Add Tutorial',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
-                InlineKeyboardButton(
-                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                    callback_data=f'settings#tutorial#{settings["tutorial"]}#{str(grp_id)}',
-                ),
+                    InlineKeyboardButton('Add Tutorial',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
+                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
             ],
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -1442,15 +1429,13 @@ async def auto_filter(client, msg, spoll=False):
                     InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'sinfo')
                 ]
             )
-    TUTORIALS = settings['tutorial']
-    if tutorial:
-        cas = TUTORIALS
+    if 'tutorial' in settings.keys():
+        TUTORIALS = settings['tutorial']
     else:
-        cas = f"https://t.me/movies_halt_update/2"
+        TUTORIALS = f"https://t.me/movies_halt_update/2"
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=cas)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
     ])
-
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
         BUTTONS[key] = search
