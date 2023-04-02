@@ -699,13 +699,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ]
+                ],
                 [
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
-            ],
+            ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_text(
@@ -792,13 +792,13 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ]
+                ],
                 [
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
-            ],
+            ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await client.send_message(
@@ -1298,7 +1298,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ]
+                ],
                 [
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
