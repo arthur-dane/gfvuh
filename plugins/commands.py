@@ -838,7 +838,7 @@ async def shortlink(bot, message):
 
 @Client.on_message(filters.command('add_tutorial'))
 async def save_tutorial(client, message):
-    sts = await message.reply("Checking Tutorial")
+    sts = await message.reply("Processing...⏳")
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
