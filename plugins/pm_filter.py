@@ -699,7 +699,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
             ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -787,7 +787,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
             ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
@@ -1288,8 +1288,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Add Tutorial',
                                          callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',)
-            ],
+                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
+            ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
