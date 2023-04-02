@@ -598,11 +598,11 @@ async def settings(client, message):
             [
                 InlineKeyboardButton(
                     'Add Tutorial',
-                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{grp_id}',
                 ),
                 InlineKeyboardButton(
                     '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',
+                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{grp_id}',
                 ),
             ]
         ]
@@ -874,7 +874,7 @@ async def save_tutorial(client, message):
         return
 
     if len(message.command) < 2:
-        return await sts.edit("You Haven't Added Your Tutorial Link!!")
+        return await sts.edit(""<b>Command Incomplete :(\n\nGive me your tutorial link along with the command !\n\nFormat: <code>/add_tutorial https://t.me/movies_halt_update/2</code></b>")
     tutorial = message.text.split(" ", 1)[1]
     await save_group_settings(grp_id, 'tutorial', tutorial)
-    await sts.edit(f"Successfully changed Tutorial Link for {title} to\n\n{tutorial}")
+    await sts.edit(f"Successfully Addedd Your Tutorial Link for {title}.\n\nCurrent Tutorial Link: <code>{tutorial}</code>")
