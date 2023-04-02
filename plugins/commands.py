@@ -598,7 +598,7 @@ async def settings(client, message):
             [
                 InlineKeyboardButton(
                     'Add Tutorial',
-                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'
+                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}',
                 ),
                 InlineKeyboardButton(
                     '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
