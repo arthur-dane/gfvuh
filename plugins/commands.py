@@ -594,16 +594,6 @@ async def settings(client, message):
                     '✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
-            ],
-            [
-                InlineKeyboardButton(
-                    'Add Tutorial',
-                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{grp_id}',
-                ),
-                InlineKeyboardButton(
-                    '✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                    callback_data=f'setgs#tutorial#{settings["tutorial"]}#{grp_id}',
-                ),
             ]
         ]
 
