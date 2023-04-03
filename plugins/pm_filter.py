@@ -268,10 +268,7 @@ async def next_page(bot, query):
                         InlineKeyboardButton("𝐍𝐄𝐗𝐓 ➪", callback_data=f"next_{req}_{key}_{n_offset}")
                     ],
                 )
-    if 'tutorial' in settings.keys():
-        TUTORIALS = settings['tutorial']
-    else:
-        TUTORIALS = f"https://t.me/movies_halt_update/2"
+
     btn.insert(0, [
         InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
     ])
