@@ -11,11 +11,11 @@ import pyrogram
 from database.connections_mdb import active_connection, all_connections, delete_connection, if_active, make_active, \
     make_inactive
 from info import ADMINS, AUTH_CHANNEL, AUTH_USERS, SUPPORT_CHAT_ID, CUSTOM_FILE_CAPTION, MSG_ALRT, PICS, EARN_IMG, CONNECT_IMG, AUTH_GROUPS, P_TTI_SHOW_OFF, GRP_LNK, CHNL_LNK, NOR_IMG, LOG_CHANNEL, SPELL_IMG, MAX_B_TN, IMDB, \
-    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG
+    SINGLE_BUTTON, SPELL_CHECK_REPLY, IMDB_TEMPLATE, NO_RESULTS_MSG, BLACKLIST_WORDS
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto
 from pyrogram import Client, filters, enums
 from pyrogram.errors import FloodWait, UserIsBlocked, MessageNotModified, PeerIdInvalid
-from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink
+from utils import get_size, is_subscribed, get_poster, search_gagala, temp, get_settings, save_group_settings, get_shortlink, replace_username
 from database.users_chats_db import db
 from database.ia_filterdb import Media, get_file_details, get_search_results, get_bad_files
 from database.filters_mdb import (
@@ -100,7 +100,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"[{get_size(file.file_size)}] {replace_username(file.file_name)}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                 ]
                 for file in files
@@ -109,7 +109,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"{replace_username(file.file_name)}", url=await get_shortlink(query.message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                     InlineKeyboardButton(
                         text=f"{get_size(file.file_size)}",
@@ -123,7 +123,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
+                        text=f"[{get_size(file.file_size)}] {replace_username(file.file_name)}", callback_data=f'files#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -132,7 +132,7 @@ async def next_page(bot, query):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                        text=f"{replace_username(file.file_name)}", callback_data=f'files#{file.file_id}'
                     ),
                     InlineKeyboardButton(
                         text=f"{get_size(file.file_size)}",
@@ -270,7 +270,7 @@ async def next_page(bot, query):
                 )
 
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=f"https://t.me/movies_halt_update/2")
     ])
     try:
         await query.edit_message_reply_markup(
@@ -691,13 +691,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ],
-                [
-                    InlineKeyboardButton('Add Tutorial',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
-                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
-            ]
+                ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_text(
@@ -779,13 +773,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ],
-                [
-                    InlineKeyboardButton('Add Tutorial',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
-                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
-            ]
+                ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await client.send_message(
@@ -1280,13 +1268,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}'),
                     InlineKeyboardButton('✔ Oɴ' if settings["is_shortlink"] else '✘ Oғғ',
                                          callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{str(grp_id)}')
-                ],
-                [
-                    InlineKeyboardButton('Add Tutorial',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}'),
-                    InlineKeyboardButton('✅ 𝐘𝐄𝐒' if settings["tutorial"] else '🗑️ 𝐍𝐎',
-                                         callback_data=f'setgs#tutorial#{settings["tutorial"]}#{str(grp_id)}')
-            ]
+                ]
             ]
             reply_markup = InlineKeyboardMarkup(buttons)
             await query.message.edit_reply_markup(reply_markup)
@@ -1329,7 +1311,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                        text=f"[{get_size(file.file_size)}] {replace_username(file.file_name)}", url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                 ]
                 for file in files
@@ -1338,7 +1320,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}",
+                        text=f"{replace_username(file.file_name)}",
                         url=await get_shortlink(message.chat.id, f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
                     ),
                     InlineKeyboardButton(
@@ -1353,7 +1335,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                        text=f"[{get_size(file.file_size)}] {replace_username(file.file_name)}", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
                 for file in files
@@ -1362,7 +1344,7 @@ async def auto_filter(client, msg, spoll=False):
             btn = [
                 [
                     InlineKeyboardButton(
-                        text=f"{file.file_name}",
+                        text=f"{replace_username(file.file_name)}",
                         callback_data=f'{pre}#{file.file_id}',
                     ),
                     InlineKeyboardButton(
@@ -1411,12 +1393,9 @@ async def auto_filter(client, msg, spoll=False):
                     InlineKeyboardButton(f'ꜱᴇʀɪᴇꜱ', 'sinfo')
                 ]
             )
-    if 'tutorial' in settings.keys():
-        TUTORIALS = settings['tutorial']
-    else:
-        TUTORIALS = f"https://t.me/movies_halt_update/2"
+
     btn.insert(0, [
-        InlineKeyboardButton("⚡ How to Open Link ⚡", url=TUTORIALS)
+        InlineKeyboardButton("⚡ How to Open Link ⚡", url=f"https://t.me/movies_halt_update/2")
     ])
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
