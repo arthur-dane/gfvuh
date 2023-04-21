@@ -45,7 +45,7 @@ async def send_msg(user_id, message):
 
 
 async def main_broadcast_handler(m:Message, db):
-    all_users = await db.get_all_notif_user()
+    all_users = await db.total_users_count()
     broadcast_msg = m.reply_to_message
     while True:
         broadcast_id = ''.join([random.choice(string.ascii_letters) for i in range(3)])
@@ -66,7 +66,7 @@ async def main_broadcast_handler(m:Message, db):
         success=success
     )
     async with aiofiles.open('broadcast.txt', 'w') as broadcast_log_file:
-        for user in all_users:
+       async for user in all_users:
             sts, msg = await send_msg(
                 user_id=int(user['id']),
                 message=broadcast_msg
