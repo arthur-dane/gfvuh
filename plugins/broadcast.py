@@ -66,7 +66,7 @@ async def main_broadcast_handler(m:Message, db):
         success=success
     )
     async with aiofiles.open('broadcast.txt', 'w') as broadcast_log_file:
-       async for user in all_users:
+       for user in all_users:
             sts, msg = await send_msg(
                 user_id=int(user['id']),
                 message=broadcast_msg
