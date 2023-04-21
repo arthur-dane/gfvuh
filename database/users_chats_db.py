@@ -69,7 +69,8 @@ class Database:
         return user.get('ban_status', default)
 
     async def get_all_users(self):
-        return self.col.find({})
+        all_users = self.col.find({})
+        return all_users
     
 
     async def delete_user(self, user_id):
