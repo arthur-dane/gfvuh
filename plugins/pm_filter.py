@@ -582,6 +582,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+
     elif query.data.startswith("checksub"):
         if AUTH_CHANNEL and not await is_subscribed(client, query):
             await query.answer("Jᴏɪɴ ᴏᴜʀ Bᴀᴄᴋ-ᴜᴘ ᴄʜᴀɴɴᴇʟ ᴍᴀʜɴ! 😒", show_alert=True)
@@ -625,23 +626,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.answer()
 
     elif query.data.startswith("send_fall"):
-
         temp, ident, key, offset = query.data.split("#")
-
         search = BUTTONS.get(key)
-
         if not search:
-
             await query.answer(script.OLD_ALRT_TXT.format(query.from_user.first_name),show_alert=True)
-
             return
-
-        files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=int(offset), filter=True)
-
+        files, n_offset, total = await get_search_results(query.message.chat.id, search, offset=offset, filter=True)
         await send_all(client, query.from_user.id, files, ident)
-
-        await query.answer(f"Hey {query.from_user.first_name}, All files on this page has been sent successfully to your PM !", show_alert=True)
-        
+        await query.answer(f"Hey {query.from_user.first_name}, All files on this page has been sent successfully to your PM !")
         
     elif query.data.startswith("opnsetgrp"):
         ident, grp_id = query.data.split("#")
